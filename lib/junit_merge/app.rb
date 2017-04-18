@@ -75,7 +75,7 @@ module JunitMerge
           attribute_predicate('classname', node['classname']),
           attribute_predicate('name', node['name']),
         ].join(' and ')
-        original = target.xpath("testsuite/testcase[#{predicates}]").first
+        original = target.xpath("//testsuite/testcase[#{predicates}]").first
 
         if original
           summary_diff.add(node, 1)
@@ -83,7 +83,7 @@ module JunitMerge
           original.replace(node)
         elsif !@update_only
           summary_diff.add(node, 1)
-          testsuite = target.xpath("testsuite").first
+          testsuite = target.xpath("//testsuite").first
           testsuite.add_child(node)
         end
 
